@@ -11,7 +11,6 @@ async function getPhotographers() {
         photographers: photographersArray,
         media: mediaArray
     };
-
 }
 
 async function displayData(photographers) {
