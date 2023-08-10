@@ -22,9 +22,7 @@ async function displayData(photographers) {
         const userCardDOM = photographerModel.getUserCardDOM();
         photographersSection.appendChild(userCardDOM);
     });
-    userCardDOM.addEventListener('click', () => {
-        window.location.href = `photographer.html?id=${photographer.id}`;
-    });
+    
 }
 
 async function init() {
