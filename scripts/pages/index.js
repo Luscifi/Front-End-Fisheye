@@ -5,11 +5,12 @@ async function getPhotographers() {
 
     const photographersArray = data.photographers;
     const mediaArray = data.media;
-    console.log(photographersArray);
+
     // Retourner les photographes une fois récupérés
     return {
         photographers: photographersArray,
-        media: mediaArray
+        media: mediaArray,
+
     };
 }
 
@@ -21,7 +22,6 @@ async function displayData(photographers) {
         const userCardDOM = photographerModel.getUserCardDOM();
         photographersSection.appendChild(userCardDOM);
     });
-    
 }
 
 async function init() {

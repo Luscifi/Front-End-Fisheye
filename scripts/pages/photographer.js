@@ -1,28 +1,42 @@
-//Mettre le code JavaScript lié à la page photographer.html
 async function getPhotographers() {
-    // Charger les données à partir du fichier JSON en utilisant Fetch
+    // Load data from JSON using Fetch
     const response = await fetch('./data/photographers.json');
     const data = await response.json();
 
     const photographersArray = data.photographers;
     const mediaArray = data.media;
-    console.log(photographersArray);
-    console.log(mediaArray);
-    // Retourner les photographes une fois récupérés
+
     return {
         photographers: photographersArray,
-        media: mediaArray
+        media: mediaArray,
     };
 }
 
-async function displayData(media) {
-    const photographersSection = document.querySelector(".photographer_section");
+async function displayPhotographerInfo(photographer) {
+    const photographerHeader = document.querySelector(".photographer-head");
 
-    photographers.forEach((media) => {
-        const mediaModel = photographerTemplate(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM();
-        photographersSection.appendChild(userCardDOM);
-    });
-    
+    if (photographerHeader) {
+        const photographerModel = photographerHeaderTemplate(photographer);
+        const userHeaderDOM = photographerModel.getUserHeaderDOM();
+        photographerHeader.appendChild(userHeaderDOM);
+    } else {
+        console.log("Element with class 'photographer-head' not found.");
+    }
 }
 
+async function init() {
+    const { photographers } = await getPhotographers();
+
+    const url = new URL(window.location.href);
+    const photographerId = url.searchParams.get('id');
+
+    const photographer = photographers.find(photographer => photographer.id === parseInt(photographerId));
+
+    if (photographer) {
+        displayPhotographerInfo(photographer);
+    } else {
+        console.log("Photographer not found.");
+    }
+}
+
+init();
