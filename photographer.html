@@ -9,7 +9,7 @@
   </head>
   <body>
     <header>
-      <a href="/index.html" alt="Fisheye Home page"> <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/> </a>
+      <img src="assets/images/logo.png" class="logo" />
     </header>
     <main id="main">
       <div id="header-photographer">
@@ -23,12 +23,20 @@
       </div>
       <img class="photographerProfileImg" src="" alt="">
     </div>
-      <div id="gallery-select">
+      <div id="galleryselect">
         <p>Trier par </p>
       </div>
       <div class="photographer_gallery">
       </div>
     </main>
+    <div id="gallery-item-modal">
+      <i class="fa-solid fa-xmark" id="close-modal-icon" onclick="closeModalGallery()"></i>
+      <div id="gallery-item-modal-content">
+        <i class="fa-solid fa-chevron-left"></i>
+        <img id="modale-img"/>
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+  </div>
     <div id="contact_modal">
 			<div class="modal">
 				<header>

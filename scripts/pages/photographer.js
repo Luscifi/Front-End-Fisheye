@@ -38,17 +38,20 @@ async function displayPhotographerInfo(photographer) {
 }
 
 async function displayPhotographerGallery(photographerId, media, photographer) {
-    const photographerGallery = document.querySelector(".photographer_gallery");
-    
+    const photographerGallery = document.querySelector('.photographer_gallery');
     const filteredMedia = media.filter(mediaItem => mediaItem.photographerId === photographerId);
-    
+
     filteredMedia.forEach((mediaItem) => {
-        const galleryModel = galleryTemplate(mediaItem, photographer.name); 
+        const galleryModel = galleryTemplate(mediaItem, photographer.name);
         const galleryDOM = galleryModel.getGalleryDOM();
-        photographerGallery.appendChild(galleryDOM);
+
+        if (galleryDOM instanceof Node) {
+            photographerGallery.appendChild(galleryDOM);
+        } else {
+            console.log('galleryDOM is not a valid DOM node.');
+        }
     });
 }
-
 
 async function init() {
     try {
@@ -56,19 +59,19 @@ async function init() {
         const url = new URL(window.location.href);
         const photographerId = parseInt(url.searchParams.get('id'));
 
-        console.log("photographerId:", photographerId);
+        console.log('photographerId:', photographerId);
 
         const photographer = photographers.find(photographer => photographer.id === photographerId);
-        console.log("photographer:", photographer);
+        console.log('photographer:', photographer);
 
         if (photographer) {
             displayPhotographerInfo(photographer);
             displayPhotographerGallery(photographerId, media, photographer);
         } else {
-            console.log("Photographer not found.");
+            console.log('Photographer not found.');
         }
     } catch (error) {
-        console.error("An error occurred:", error);
+        console.error('An error occurred:', error);
     }
 }
 
