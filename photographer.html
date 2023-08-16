@@ -19,7 +19,7 @@
       <p id="photographerHeaderTagline"></p>
     </div>
       <div class="photographer-head">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" id='contact-btn' onclick="openModalContact(event)">Contactez-moi</button>
       </div>
       <img class="photographerProfileImg" src="" alt="">
     </div>
@@ -30,28 +30,44 @@
       </div>
     </main>
     <div id="gallery-item-modal">
-      <i class="fa-solid fa-xmark" id="close-modal-icon" onclick="closeModalGallery()"></i>
+      <div id="container-gallery">
       <div id="gallery-item-modal-content">
+        <i class="fa-solid fa-xmark" id="close-modal-icon" onclick="closeModalGallery()"></i>
         <i class="fa-solid fa-chevron-left"></i>
         <img id="modale-img"/>
+        <video id="modale-video"></video>
         <i class="fa-solid fa-chevron-right"></i>
       </div>
+      <div id="gallery-item-title">
+      </div>
+    </div>
   </div>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+  <div id="container-contact-modal">
+  <form name="contact" id='contact-modal' action="#" method="get" onsubmit="return validate();">
+    <i class="fa-solid fa-xmark" id="close-modal-icon-contact" onclick="closeModalContact()"></i>
+    <div class="formData">
+      <label>Prénom</label><br>
+      <input class="text-control" type="text" id="first" name="first" minlength="2" />
+      <p id="errorFirstName" class="errorForm"></p>
+    </div>
+    <div class="formData">
+      <label>Nom</label><br>
+      <input class="text-control" type="text" id="last" name="last" />
+      <p id="errorLastName" class="errorForm"></p>
+    </div>
+    <div class="formData">
+      <label>E-mail</label><br>
+      <input class="text-control" type="email" id="email" name="email" />
+      <p id="errorEmail" class="errorForm"></p>
+    </div>
+    <div class="formData">
+      <label>Votre message</label>
+      <textarea class="text-control" id="message" name="message" rows="10" cols="40"></textarea><br>
+      <p id="errorMessage" class="errorForm"></p>
+    </div>
+    <button class="contact_button">Envoyer</button>
+  </form>
+</div>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/templates/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>

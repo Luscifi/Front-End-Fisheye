@@ -217,7 +217,6 @@ h1 {
 }
 
 #gallery-item-modal {
-    display: none; 
     position: fixed;
     top: 0;
     left: 0;
@@ -225,10 +224,11 @@ h1 {
     height: 100%;
     background-color: white; 
     z-index: 1; 
+    padding-left: 500px;
+    margin-top: 0;
+    margin-bottom: 100px;
   }
   
-
-  /* Style pour le contenu de la modale de galerie */
   #gallery-item-modal-content {
     padding: 20px;
     border-radius: 5px;
@@ -236,7 +236,7 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2; /* Assure que le contenu de la modale est au-dessus du fond */
+    z-index: 2; 
     display: flex;
     align-items: center;
   }
@@ -260,6 +260,18 @@ h1 {
     transform: scale(0.7);
 }
 
-#gallery-item-modal-content img {
+#gallery-item-modal-content img, #gallery-item-modal-content video {
     height:500px;
 }
+
+#gallery-item-title {
+}
+
+#container-gallery {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+
+
+

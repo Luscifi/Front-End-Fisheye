@@ -31,6 +31,14 @@ function photographerTemplate(data) {
     return { id, name, city, country, tagline, price, picture, getUserCardDOM }
 }
 
+function closeModalGallery() {
+    const modal = document.getElementById('gallery-item-modal');
+    modal.style.display = 'none';
+}
+
+const closeModalIcon = document.getElementById('close-modal-icon');
+closeModalIcon.addEventListener('click', closeModalGallery);
+
 function photographerHeaderTemplate(data) {
     const { id, name, city, country, tagline, price, portrait } = data;
 
@@ -58,15 +66,6 @@ function galleryTemplate(galleryItem, photographerName) {
     // Generate the path to the image using the photographer's name and image name
     const picture = `./assets/images/${photographerName}/${image}`;
     const videoPhotographer = `./assets/images/${photographerName}/${video}`;
-
-
-    function closeModalGallery() {
-        const modal = document.getElementById('gallery-item-modal');
-        modal.style.display = 'none';
-    }
-
-    const closeModalIcon = document.getElementById('close-modal-icon');
-    closeModalIcon.addEventListener('click', closeModalGallery);
 
     function getGalleryDOM() {
         const article = document.createElement('article');
@@ -101,7 +100,6 @@ function galleryTemplate(galleryItem, photographerName) {
 
         galleryItemInfoDiv.appendChild(galleryItemTitle);
         galleryItemInfoDiv.appendChild(nbLikes);
-
         galleryLink.appendChild(galleryItemInfoDiv);
         article.appendChild(galleryLink);
 
@@ -111,11 +109,42 @@ function galleryTemplate(galleryItem, photographerName) {
             event.preventDefault();
             const modal = document.getElementById('gallery-item-modal');
             const modalContent = document.getElementById('gallery-item-modal-content');
-            const imgModale = document.getElementById("modale-img");
-            imgModale.src = `./assets/images/${photographerName}/${image}`;
+            const imgModal = document.getElementById("modale-img");
+            const videoModal = document.getElementById("modale-video");
+            const titleModal = document.getElementById("gallery-item-title")
+            if (image){ 
+            imgModal.src = `./assets/images/${photographerName}/${image}`;
+            imgModal.style.display = 'block';
+            videoModal.style.display = 'none';
+            const galleryModalTitle = document.createElement('p');
+            titleModal.textContent = title;
+        } else {
+            videoModal.src = `./assets/images/${photographerName}/${video}`;
+            videoModal.controls = true;
+            videoModal.style.display='block'
+            imgModal.style.display = 'none';
+        }
             modal.style.display = 'block';
         }
     }
 
     return { id, title, image, likes, price, getGalleryDOM };
 }
+
+
+function openModalContact(event) {
+    event.preventDefault();
+    const modalContact = document.getElementById('container-contact-modal');
+        modalContact.style.display = 'block';
+}
+
+const openModalBtn = document.getElementById('contact-btn');
+openModalBtn.addEventListener('click', openModalContact);
+
+function closeModalContact() {
+    const modal = document.getElementById('container-contact-modal');
+    modal.style.display = 'none';
+}
+
+const closeModalIconContact = document.getElementById('close-modal-icon-contact');
+closeModalIconContact.addEventListener('click', closeModalContact);
