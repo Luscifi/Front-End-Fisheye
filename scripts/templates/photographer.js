@@ -41,7 +41,6 @@ closeModalIcon.addEventListener('click', closeModalGallery);
 
 function photographerHeaderTemplate(data) {
     const { id, name, city, country, tagline, price, portrait } = data;
-
     const picture = `./assets/images/IDphotos/${portrait}`;
 
     function getUserHeaderDOM() {
@@ -55,11 +54,15 @@ function photographerHeaderTemplate(data) {
         const imgElement = document.querySelector(".photographerProfileImg");
         imgElement.src = picture;
         imgElement.alt = name;
+        const priceDay = document.getElementById('price-day');
+        
+        priceDay.textContent = `${price} € / jour`; 
+
     }
 
     return { id, name, city, country, tagline, price, picture, getUserHeaderDOM };
 }
-
+let totalLike = 0;
 function galleryTemplate(galleryItem, photographerName) {
     const { id, title, image, video, likes, price } = galleryItem;
 
@@ -102,8 +105,12 @@ function galleryTemplate(galleryItem, photographerName) {
         galleryItemInfoDiv.appendChild(nbLikes);
         galleryLink.appendChild(galleryItemInfoDiv);
         article.appendChild(galleryLink);
-
+        totalLike = totalLike + likes;
+        const LikesTotal = document.getElementById('likes-total');
+        LikesTotal.textContent = totalLike;
         return article;
+
+        
 
         function openModalGallery(event) {
             event.preventDefault();
@@ -116,7 +123,6 @@ function galleryTemplate(galleryItem, photographerName) {
             imgModal.src = `./assets/images/${photographerName}/${image}`;
             imgModal.style.display = 'block';
             videoModal.style.display = 'none';
-            const galleryModalTitle = document.createElement('p');
             titleModal.textContent = title;
         } else {
             videoModal.src = `./assets/images/${photographerName}/${video}`;
@@ -126,7 +132,9 @@ function galleryTemplate(galleryItem, photographerName) {
         }
             modal.style.display = 'block';
         }
+
     }
+
 
     return { id, title, image, likes, price, getGalleryDOM };
 }
@@ -148,3 +156,4 @@ function closeModalContact() {
 
 const closeModalIconContact = document.getElementById('close-modal-icon-contact');
 closeModalIconContact.addEventListener('click', closeModalContact);
+

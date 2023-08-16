@@ -9,7 +9,8 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="/index.html" alt="Fisheye Home page"> <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/> </a>
+ 
     </header>
     <main id="main">
       <div id="header-photographer">
@@ -25,9 +26,24 @@
     </div>
       <div id="galleryselect">
         <p>Trier par </p>
+        <div class="select">
+          <span class="myarrow"></span>
+          <select>
+            <option selected>Popularité</option>
+            <option>Date</option>
+            <option>Titre</option>
+          </select>
       </div>
+    </div>
       <div class="photographer_gallery">
       </div>
+      <div id="fixed-label">
+        <div id="likes-total-container">
+        <p id="likes-total"></p>
+        <i class="fas fa-heart"></i>
+      </div>
+        <p id="price-day"></p>
+    </div>
     </main>
     <div id="gallery-item-modal">
       <div id="container-gallery">
