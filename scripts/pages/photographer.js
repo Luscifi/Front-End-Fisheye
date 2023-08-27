@@ -16,10 +16,13 @@ async function getPhotographers() {
 async function displayPhotographerInfo(photographer) {
     const photographerHeader = document.querySelector(".photographer-head");
 
+    if (photographerHeader) {
         const photographerModel = photographerHeaderTemplate(photographer);
         const userHeaderDOM = photographerModel.getUserHeaderDOM();
         photographerHeader.appendChild(userHeaderDOM);
-   
+    } else {
+        console.log("Element with class 'photographer-head' not found.");
+    }
 }
 
 async function displayPhotographerGallery(photographerId, media, photographer) {
@@ -44,10 +47,10 @@ async function init() {
         const url = new URL(window.location.href);
         const photographerId = parseInt(url.searchParams.get('id'));
 
-        
+        console.log('photographerId:', photographerId);
 
         const photographer = photographers.find(photographer => photographer.id === photographerId);
-        
+        console.log('photographer:', photographer);
 
         if (photographer) {
             displayPhotographerInfo(photographer);
@@ -62,7 +65,7 @@ async function init() {
 
 init();
 
-//SELECT 
+//SELECT
    // Save a list of named combobox actions, for future readability
    const SelectActions = {
     Close: 0,

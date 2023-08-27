@@ -64,10 +64,11 @@ function photographerHeaderTemplate(data) {
 }
 let totalLike = 0;
 let mediaArray = [];
+let mediaArrayAfterFunction;
 function galleryTemplate(galleryItem, photographerName) {
     const { id, title, image, video, likes, price } = galleryItem;
     mediaArray.push(id);
-    console.log(mediaArray);
+
     // Generate the path to the image using the photographer's name and image name
     const picture = `./assets/images/${photographerName}/${image}`;
     const videoPhotographer = `./assets/images/${photographerName}/${video}`;
@@ -112,7 +113,6 @@ function galleryTemplate(galleryItem, photographerName) {
         LikesTotal.textContent = totalLike;
         return article;
 
-        
 
         function openModalGallery(event) {
             event.preventDefault();
@@ -136,11 +136,23 @@ function galleryTemplate(galleryItem, photographerName) {
         }
 
     }
+    mediaArrayAfterFunction = mediaArray;
+console.log(mediaArray);
+currentId = id;
+
+let findId = (element) => element === currentId;
+indexOfId = mediaArray.findIndex(findId);
+console.log(indexOfId)
+indexOfIdPrevious = indexOfId - 1;
+console.log(mediaArray[indexOfIdPrevious]);
+indexOfIdNext = indexOfId + 1;
+console.log(mediaArray[indexOfIdNext]);
 
 
-    return { mediaArray, id, title, image, likes, price, getGalleryDOM };
+    return { mediaArrayAfterFunction, mediaArray, id, title, image, likes, price, getGalleryDOM };
 }
- console.log('test2' +mediaArray);
+
+console.log('mediaArray hors fonction :' + mediaArray);
 
 function openModalContact(event) {
     event.preventDefault();
