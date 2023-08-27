@@ -1,3 +1,5 @@
+@import url("photographer.css");
+
 #contact_modal {
     display: none;
 }
@@ -137,7 +139,16 @@ form input, form textarea {
     width: 30%; 
     box-sizing: border-box; 
 }
+@media (max-width: 1250px) {
 
+.photographer_gallery article {
+    width: 50%; 
+}
+#header-photographer {
+    margin-right:0;
+    margin-left:0;
+}
+}
 .gallery-item-info {
     color: #901C1C;
     display: flex;
@@ -255,28 +266,101 @@ form input, form textarea {
     align-items: center;
 }
 
-.select {
-    position: relative;
-    display: inline-block;
-  }
-  
-  #dropdown-list {
+.combo *,
+    .combo *::before,
+    .combo *::after {
+      box-sizing: border-box;
+    }
+    
+    .combo {
+      display: block;
+      margin-bottom: 1.5em;
+      min-width: 170px;
+      position: relative;
+    }
+
+    [role="option"][aria-selected="true"]::before {
+    content: '';
     position: absolute;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    display: none;
-    min-width: 150px; /* Ajustez la largeur selon vos besoins */
-  }
-  
-  .dropdown-list li {
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  .dropdown-list li:hover {
-    background-color: #f0f0f0;
-  }
-  
+    left: 0.5em;
+}
+::-webkit-scrollbar { width: 0 !important }
+    
+    .combo::after {
+      border-bottom: 3px solid white;
+      border-right: 3px solid white;
+      content: "";
+      display: block;
+      height: 12px;
+      pointer-events: none;
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translate(0, -35%) rotate(-135deg);
+      width: 12px;
+    }
+    
+    .combo-input {
+      background-color:#901C1C;
+      border-radius: 4px;
+      display: block;
+      font-size: 1em;
+      min-height: 20px;
+      padding: 12px 16px 14px;
+      text-align: left;
+      width: 100%;
+      color:white;
+      font-family: 'DM Sans';
+      font-weight: 700;
+      overflow: hidden;
+    }
+    
+    .open .combo-input {
+      border-radius: 4px 4px 0 0;
+
+    }
+    
+    .combo-input:focus {
+    }
+    
+    .combo-label {
+      display: block;
+      font-size: 20px;
+      font-weight: 100;
+      margin-bottom: 0.25em;
+    }
+    
+    .combo-menu {
+      background-color: #901C1C;
+      border-radius: 0 0 4px 4px;
+      display: none;
+      max-height: 300px;
+      overflow-y: scroll;
+      left: 0;
+      position: absolute;
+      top: 100%;
+      width: 100%;
+      z-index: 100;
+      color:white;
+      font-family: 'DM Sans';
+      font-weight: 700;
+    }
+    
+    .open .combo-menu {
+      display: block;
+    }
+    
+    .combo-option {
+      padding: 10px 12px 12px;
+    }
+    
+    .combo-option:hover {
+      background-color: rgb(0 0 0 / 10%);
+    }
+
+    
+    .combo-option[aria-selected="true"] {
+      padding-right: 30px;
+      position: relative;
+    }
+    
