@@ -63,12 +63,13 @@ function photographerHeaderTemplate(data) {
     return { id, name, city, country, tagline, price, picture, getUserHeaderDOM };
 }
 let totalLike = 0;
+let likesArray = []
 let mediaArray = [];
 let mediaArrayAfterFunction;
 function galleryTemplate(galleryItem, photographerName) {
     const { id, title, image, video, likes, price } = galleryItem;
     mediaArray.push(id);
-
+    likesArray.push(likes)
     // Generate the path to the image using the photographer's name and image name
     const picture = `./assets/images/${photographerName}/${image}`;
     const videoPhotographer = `./assets/images/${photographerName}/${video}`;
@@ -136,8 +137,9 @@ function galleryTemplate(galleryItem, photographerName) {
         }
 
     }
-    mediaArrayAfterFunction = mediaArray;
+
 console.log(mediaArray);
+
 currentId = id;
 
 let findId = (element) => element === currentId;
@@ -149,11 +151,11 @@ indexOfIdNext = indexOfId + 1;
 console.log(mediaArray[indexOfIdNext]);
 
 
-    return { mediaArrayAfterFunction, mediaArray, id, title, image, likes, price, getGalleryDOM };
+    return { mediaArray, id, title, image, likes, price, getGalleryDOM };
 }
 
 console.log('mediaArray hors fonction :' + mediaArray);
-
+console.log('likes array hors fonction :' + likesArray);
 function openModalContact(event) {
     event.preventDefault();
     const modalContact = document.getElementById('container-contact-modal');
@@ -168,6 +170,11 @@ function closeModalContact() {
     modal.style.display = 'none';
 }
 
-const closeModalIconContact = document.getElementById('close-modal-icon-contact');
-closeModalIconContact.addEventListener('click', closeModalContact);
 
+
+const comboText2 = document.querySelector('#combo1-0');
+console.log(comboText2);
+selectedOption3 = comboText2.value;
+selectecOption4 = comboText2.text;
+console.log(selectedOption3);
+console.log(selectedOption4);

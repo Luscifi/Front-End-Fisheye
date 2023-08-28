@@ -452,7 +452,50 @@ init();
     // move focus back to the combobox, if needed
     callFocus && this.comboEl.focus();
   };
-  
+
+  Select.prototype.createOption = function (optionText, index) {
+    const optionEl = document.createElement('div');
+    optionEl.setAttribute('role', 'option');
+    optionEl.id = `${this.idBase}-${index}`;
+    optionEl.className =
+      index === 0 ? 'combo-option option-current' : 'combo-option';
+    optionEl.setAttribute('aria-selected', `${index === 0}`);
+    optionEl.innerText = optionText;
+    
+    // change text as value 
+    optionEl.setAttribute('value', optionText);
+    
+    optionEl.addEventListener('click', (event) => {
+      event.stopPropagation();
+      this.onOptionClick(index);
+    });
+    optionEl.addEventListener('mousedown', this.onOptionMouseDown.bind(this));
+    
+    return optionEl;
+  };
+
+Select.prototype.createOption = function (optionText, index) {
+  const optionEl = document.createElement('div');
+  optionEl.setAttribute('role', 'option');
+  optionEl.id = `${this.idBase}-${index}`;
+  optionEl.className =
+    index === 0 ? 'combo-option option-current' : 'combo-option';
+  optionEl.setAttribute('aria-selected', `${index === 0}`);
+  optionEl.innerText = optionText;
+
+  // Set the 'data-value' attribute to the option text
+  optionEl.setAttribute('value', optionText);
+
+  optionEl.addEventListener('click', (event) => {
+    event.stopPropagation();
+    this.onOptionClick(index);
+  });
+  optionEl.addEventListener('mousedown', this.onOptionMouseDown.bind(this));
+
+  return optionEl;
+};
+
+
   // init select
   window.addEventListener('load', function () {
     const options = [
