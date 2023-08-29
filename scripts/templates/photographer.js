@@ -163,13 +163,7 @@ function openModalContact(event) {
 }
 
 const openModalBtn = document.getElementById('contact-btn');
-openModalBtn.addEventListener('click', openModalContact);
-
-function closeModalContact() {
-    const modal = document.getElementById('container-contact-modal');
-    modal.style.display = 'none';
-}
-
+openModalBtn.addEventListener('click', openModalContact)
 
 
 const comboText2 = document.querySelector('#combo1-0');
@@ -178,3 +172,28 @@ selectedOption3 = comboText2.value;
 selectecOption4 = comboText2.text;
 console.log(selectedOption3);
 console.log(selectedOption4);
+
+const closeContactModalBtn = document.getElementById('close-modal-icon');
+closeContactModalBtn.addEventListener("click", closeModalContact);
+
+function closeModalContact() {
+    const modal = document.getElementById('container-contact-modal');
+    modal.style.display = 'none';
+}
+
+
+const submitModal = document.querySelector('#submit-form');
+submitModal.addEventListener("click", submitModalForm);
+
+
+function submitModalForm() {
+    event.preventDefault();
+    const firstname = document.querySelector('#first');
+    const lastname = document.querySelector('#last');
+    const email = document.querySelector('#email');
+    const message = document.querySelector('#message');
+    console.log(firstname.value);
+    console.log(lastname.value);
+    console.log(email.value);
+    console.log(message.value);
+}
