@@ -65,7 +65,7 @@ function photographerHeaderTemplate(data) {
 let totalLike = 0;
 let likesArray = []
 let mediaArray = [];
-let mediaArrayAfterFunction;
+let mediaArray2 = [];
 function galleryTemplate(galleryItem, photographerName) {
     const { id, title, image, video, likes, price } = galleryItem;
     mediaArray.push(id);
@@ -123,23 +123,23 @@ function galleryTemplate(galleryItem, photographerName) {
             const videoModal = document.getElementById("modale-video");
             const titleModal = document.getElementById("gallery-item-title")
             if (image){ 
-            imgModal.src = `./assets/images/${photographerName}/${image}`;
-            imgModal.style.display = 'block';
-            videoModal.style.display = 'none';
-            titleModal.textContent = title;
-        } else {
-            videoModal.src = `./assets/images/${photographerName}/${video}`;
-            videoModal.controls = true;
-            videoModal.style.display='block'
-            imgModal.style.display = 'none';
-        }
+                imgModal.src = `./assets/images/${photographerName}/${image}`;
+                imgModal.style.display = 'block';
+                videoModal.style.display = 'none';
+                titleModal.textContent = title;
+            } else {
+                videoModal.src = `./assets/images/${photographerName}/${video}`;
+                videoModal.controls = true;
+                videoModal.style.display='block'
+                imgModal.style.display = 'none';
+            }
             modal.style.display = 'block';
         }
-
     }
 
 console.log(mediaArray);
-
+mediaArray2=mediaArray;
+console.log(mediaArray2);
 currentId = id;
 
 let findId = (element) => element === currentId;
@@ -150,12 +150,13 @@ console.log(mediaArray[indexOfIdPrevious]);
 indexOfIdNext = indexOfId + 1;
 console.log(mediaArray[indexOfIdNext]);
 
-
     return { mediaArray, id, title, image, likes, price, getGalleryDOM };
 }
 
+console.log('rfrff'+mediaArray2);
 console.log('mediaArray hors fonction :' + mediaArray);
 console.log('likes array hors fonction :' + likesArray);
+
 function openModalContact(event) {
     event.preventDefault();
     const modalContact = document.getElementById('container-contact-modal');
