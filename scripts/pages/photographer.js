@@ -19,7 +19,6 @@ async function displayPhotographerInfo(photographer) {
     if (photographerHeader) {
         const photographerModel = photographerHeaderTemplate(photographer);
         const userHeaderDOM = photographerModel.getUserHeaderDOM();
-        photographerHeader.appendChild(userHeaderDOM);
     } else {
         console.log("Element with class 'photographer-head' not found.");
     }
@@ -46,12 +45,7 @@ async function init() {
         const { photographers, media } = await getPhotographers();
         const url = new URL(window.location.href);
         const photographerId = parseInt(url.searchParams.get('id'));
-
-        console.log('photographerId:', photographerId);
-
-        const photographer = photographers.find(photographer => photographer.id === photographerId);
-        console.log('photographer:', photographer);
-
+        const photographer = photographers.find(photographer => photographer.id === photographerId)
         if (photographer) {
             displayPhotographerInfo(photographer);
             displayPhotographerGallery(photographerId, media, photographer);

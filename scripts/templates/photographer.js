@@ -64,11 +64,11 @@ function photographerHeaderTemplate(data) {
 }
 let totalLike = 0;
 let likesArray = []
-let mediaArray = [];
-let mediaArray2 = [];
+//let mediaArray = [];
+
 function galleryTemplate(galleryItem, photographerName) {
     const { id, title, image, video, likes, price } = galleryItem;
-    mediaArray.push(id);
+//    mediaArray.push(id);
     likesArray.push(likes)
     // Generate the path to the image using the photographer's name and image name
     const picture = `./assets/images/${photographerName}/${image}`;
@@ -77,7 +77,9 @@ function galleryTemplate(galleryItem, photographerName) {
     function getGalleryDOM() {
         const article = document.createElement('article');
         article.classList.add('gallery-item');
-
+        console.log(article);
+        article.addEventListener('click', galleryChecker);
+    
         const galleryLink = document.createElement('a');
         if (image) {
             const imgElement = document.createElement('img');
@@ -137,25 +139,61 @@ function galleryTemplate(galleryItem, photographerName) {
         }
     }
 
-console.log(mediaArray);
-mediaArray2=mediaArray;
-console.log(mediaArray2);
-currentId = id;
 
-let findId = (element) => element === currentId;
-indexOfId = mediaArray.findIndex(findId);
-console.log(indexOfId)
-indexOfIdPrevious = indexOfId - 1;
-console.log(mediaArray[indexOfIdPrevious]);
-indexOfIdNext = indexOfId + 1;
-console.log(mediaArray[indexOfIdNext]);
+        
+//console.log(mediaArray);
+//currentId = id;
+//let findId = (element) => element === currentId;
+//indexOfId = mediaArray.findIndex(findId);
+//console.log(indexOfId)
+//indexOfIdPrevious = indexOfId - 1;
+//console.log(mediaArray[indexOfIdPrevious]);
+//indexOfIdNext = indexOfId + 1;
+//console.log(mediaArray[indexOfIdNext]);
 
-    return { mediaArray, id, title, image, likes, price, getGalleryDOM };
+    return { id, title, image, likes, price, getGalleryDOM };
 }
 
-console.log('rfrff'+mediaArray2);
-console.log('mediaArray hors fonction :' + mediaArray);
-console.log('likes array hors fonction :' + likesArray);
+
+function galleryChecker(event) {
+    console.log('Gallery item clicked!');
+
+}
+
+
+const chevron = document.querySelector('#chevron-left');
+chevron.addEventListener('click', handlePrevItemClick);
+
+
+function handlePrevItemClick(event) {
+
+    const prevItem = event.target.previousElementSibling;
+    console.log(prevItem);
+    console.log('test');
+    if (currentGalleryItem) {
+        const prevItem = currentGalleryItem.previousElementSibling;
+        console.log(prevItem);
+        if (prevItem) {
+            const prevImg = prevItem.querySelector('img');
+            const prevTitleElement = prevItem.querySelector('.gallery-item-title');
+            const imgModal = document.getElementById("modale-img");
+            const titleModal = document.getElementById("gallery-item-title");
+
+            if (prevImg && prevTitleElement) {
+                const prevSrc = prevImg.getAttribute('src');
+                const prevTitle = prevTitleElement.textContent;
+
+                imgModal.src = prevSrc;
+                titleModal.textContent = prevTitle;
+
+                currentGalleryItem = prevItem; // Mettre à jour l'élément de galerie actuel
+            }
+        }
+    }
+}
+
+
+//console.log('mediaArray hors fonction :' + mediaArray);
 
 function openModalContact(event) {
     event.preventDefault();
@@ -167,12 +205,12 @@ const openModalBtn = document.getElementById('contact-btn');
 openModalBtn.addEventListener('click', openModalContact)
 
 
-const comboText2 = document.querySelector('#combo1-0');
-console.log(comboText2);
-selectedOption3 = comboText2.value;
-selectecOption4 = comboText2.text;
-console.log(selectedOption3);
-console.log(selectedOption4);
+//const comboText2 = document.querySelector('#combo1-0');
+//console.log(comboText2);
+//selectedOption3 = comboText2.value;
+//selectecOption4 = comboText2.text;
+//console.log(selectedOption3);
+//console.log(selectedOption4);
 
 const closeContactModalBtn = document.getElementById('close-modal-icon');
 closeContactModalBtn.addEventListener("click", closeModalContact);
@@ -182,19 +220,20 @@ function closeModalContact() {
     modal.style.display = 'none';
 }
 
-
-const submitModal = document.querySelector('#submit-form');
+const submitModal = document.querySelector('.submit_button');
 submitModal.addEventListener("click", submitModalForm);
 
-
-function submitModalForm() {
+function submitModalForm(event) {
     event.preventDefault();
+    console.log('test');
     const firstname = document.querySelector('#first');
     const lastname = document.querySelector('#last');
     const email = document.querySelector('#email');
     const message = document.querySelector('#message');
+    
     console.log(firstname.value);
     console.log(lastname.value);
     console.log(email.value);
     console.log(message.value);
 }
+
