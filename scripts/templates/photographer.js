@@ -123,7 +123,7 @@ function galleryTemplate(galleryItem, photographerName) {
             const modalContent = document.getElementById('gallery-item-modal-content');
             const imgModal = document.getElementById("modale-img");
             const videoModal = document.getElementById("modale-video");
-            const titleModal = document.getElementById("gallery-item-title")
+            const titleModal = document.getElementById("gallery-item-title");
             if (image){ 
                 imgModal.src = `./assets/images/${photographerName}/${image}`;
                 imgModal.style.display = 'block';
@@ -156,40 +156,107 @@ function galleryTemplate(galleryItem, photographerName) {
 
 
 function galleryChecker(event) {
-    console.log('Gallery item clicked!');
+    const clickedItem = event.currentTarget;
+    clickedItem.classList.add('currentItem');
+    const prevItem = clickedItem.previousElementSibling;
+    prevItem.classList.add('prevItem');
+    const nextItem = clickedItem.nextElementSibling;
+    nextItem.classList.add('nextItem');
 
 }
 
 
-const chevron = document.querySelector('#chevron-left');
-chevron.addEventListener('click', handlePrevItemClick);
+const chevronLeft = document.querySelector('#chevron-left');
+chevronLeft.addEventListener('click', handlePrevItemClick);
+
+const chevronRight = document.querySelector('#chevron-right');
+chevronRight.addEventListener('click', handleNextItemClick);
 
 
 function handlePrevItemClick(event) {
-
-    const prevItem = event.target.previousElementSibling;
-    console.log(prevItem);
-    console.log('test');
-    if (currentGalleryItem) {
-        const prevItem = currentGalleryItem.previousElementSibling;
-        console.log(prevItem);
+    const prevItem = document.querySelector(".prevItem");
+    const nextItem = document.querySelector(".nextItem");
         if (prevItem) {
+            
             const prevImg = prevItem.querySelector('img');
+            console.log(prevImg);
+
+            const prevVideo = prevItem.querySelector('video');
+            console.log(prevVideo);
             const prevTitleElement = prevItem.querySelector('.gallery-item-title');
             const imgModal = document.getElementById("modale-img");
+            const videoModal = document.getElementById("modale-video");
             const titleModal = document.getElementById("gallery-item-title");
 
-            if (prevImg && prevTitleElement) {
+            if (prevImg) {
+                imgModal.style.display = 'block';
+                videoModal.style.display = 'none';
                 const prevSrc = prevImg.getAttribute('src');
                 const prevTitle = prevTitleElement.textContent;
-
                 imgModal.src = prevSrc;
                 titleModal.textContent = prevTitle;
-
-                currentGalleryItem = prevItem; // Mettre à jour l'élément de galerie actuel
             }
-        }
-    }
+
+            if (prevVideo) {
+                imgModal.style.display = 'none';
+                videoModal.style.display = 'block';
+                const prevSrc = prevVideo.getAttribute('src');
+                const prevTitle = prevTitleElement.textContent;
+                videoModal.src = prevSrc;
+                titleModal.textContent = prevTitle;
+            }
+
+}
+}
+
+function handleNextItemClick(event) {
+    const prevItem = document.querySelector(".prevItem");
+    const nextItem = document.querySelector(".nextItem");
+        if (nextItem) {
+            const nextImg = nextItem.querySelector('img');
+            const nextVideo = nextItem.querySelector('video');
+            const nextTitleElement = nextItem.querySelector('.gallery-item-title');
+            const imgModal = document.getElementById("modale-img");
+            const videoModal = document.getElementById("modale-video");
+            const titleModal = document.getElementById("gallery-item-title");
+
+            if (nextImg) {
+                imgModal.style.display = 'block';
+                videoModal.style.display = 'none';
+                const nextSrc = nextImg.getAttribute('src');
+                const nextTitle = nextTitleElement.textContent;
+                imgModal.src = nextSrc;
+                titleModal.textContent = nextTitle;
+            }
+
+            if (nextVideo) {
+                imgModal.style.display = 'none';
+                videoModal.style.display = 'block';
+                const nextSrc = nextVideo.getAttribute('src');
+                const nextTitle = nextTitleElement.textContent;
+                videoModal.src = nextSrc;
+                titleModal.textContent = nextTitle;
+            }
+
+            let currentItem = document.querySelector('.currentItem');
+            const newCurrentItem = currentItem.nextElementSibling;
+            currentItem.classList.remove('currentItem');
+            newCurrentItem.classList.add('currentItem');
+            console.log(document.querySelector('.currentItem'));
+
+            //const newPrevItem = currentItem.previousElementSibling;
+            //const newNextItem = currentItem.nextElementSibling;
+            //prevItem.classList.remove('prevItem');
+            //nextItem.classList.remove('nextItem');
+            
+            //newPrevItem.classList.add('prevItem');
+            //newNextItem.classList.add('nextItem');
+            
+           // console.log(document.querySelector('.prevItem'));
+            //console.log(document.querySelector('.currentItem'));
+            //console.log(document.querySelector('.nextItem'));
+
+}
 }
 
 
