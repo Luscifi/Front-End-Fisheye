@@ -1,6 +1,8 @@
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 a {
     text-decoration:none;
@@ -17,12 +19,11 @@ header {
 
 h1 {
     color: #901C1C;
-    margin-right: 100px;
 }
 
 .logo {
     height: 50px;
-    margin-left: 100px;
+    margin-left: 10%;
 }
 
 .photographer_section {
@@ -114,11 +115,9 @@ h1 {
 
  #header-photographer {
     display:flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     background-color : #FAFAFA;
-    margin-left : 100px;
-    margin-right:100px;
     padding-bottom:60px;
     margin-bottom: 20px;
 }
@@ -336,15 +335,14 @@ h1 {
   }
   #galleryselect p {
     font-weight: 700;
-    margin-left: 100px;
     margin-right:20px;
 
   }
 
   @media (max-width: 1200px) { 
     body {
-        margin-left:100px;
-        margin-right:100px
+        margin-left:10%;
+        margin-right:10%;
     }
     .photographer_gallery {
         max-width: 900;
