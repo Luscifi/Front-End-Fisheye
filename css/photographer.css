@@ -164,6 +164,7 @@ form input, form textarea {
 .gallery-item-title, .gallery-item p {
 
     margin-top:5px;
+    margin-bottom: 0;;
 }
 .photographer_gallery article {
     margin-bottom:20px;
@@ -175,6 +176,11 @@ form input, form textarea {
     right: 0;
     background-color: red;
     width: 380px;
+}
+
+#nbLikes {
+    display:flex;
+    align-items: center;
 }
 
 #gallery-item-modal {
@@ -196,6 +202,7 @@ form input, form textarea {
     z-index: 2; 
     display: flex;
     align-items: center;
+    margin-top:5%
   }
 
   #gallery-item-modal i {
@@ -360,3 +367,8 @@ form input, form textarea {
       position: relative;
     }
     
+    .highlighted {
+        background-color: #4c0303; /* Couleur de surbrillance */
+        color: #fff; /* Couleur du texte en surbrillance */
+        /* Autres styles de surbrillance selon vos préférences */
+      }
