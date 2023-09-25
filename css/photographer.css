@@ -269,6 +269,36 @@ form input, form textarea {
     align-items: center;
 }
 
+#galleryselect {
+    display: flex;
+}
+
+#tri-section { 
+    width : 100px;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+#tribtn {
+    height:70px;
+    width : 170px;
+    margin-bottom: 25px;
+    font-family: 'DM Sans';
+    font-size: 18px;
+    background-color: #901C1C;
+    color: white;
+    border-radius: 5px;
+    padding-left: 1%;
+    border:none;
+}
+
+#tritn li:hover {
+    background-color: #4c0303;
+}
+
+
+
+
 .combo *,
     .combo *::before,
     .combo *::after {
@@ -303,7 +333,7 @@ form input, form textarea {
       width: 12px;
     }
     
-    .combo-input {
+    .tri-btn {
       background-color:#901C1C;
       border-radius: 4px;
       display: block;
@@ -321,9 +351,6 @@ form input, form textarea {
     .open .combo-input {
       border-radius: 4px 4px 0 0;
 
-    }
-    
-    .combo-input:focus {
     }
     
     .combo-label {
@@ -372,3 +399,9 @@ form input, form textarea {
         color: #fff; /* Couleur du texte en surbrillance */
         /* Autres styles de surbrillance selon vos préférences */
       }
+
+      #tri-label {
+        width: 100px; /* Ajustez la largeur selon vos besoins */
+        font-size: 16px; /* Ajustez la taille du texte selon vos besoins */
+      }
+      

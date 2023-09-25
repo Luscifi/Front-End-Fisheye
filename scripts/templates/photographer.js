@@ -39,8 +39,8 @@ function closeModalGallery() {
     modal.style.display = 'none';
 }
 
-
-
+const closeModalIcon = document.getElementById('close-modal-icon');
+closeModalIcon.addEventListener('click', closeModalGallery);
 
 function photographerHeaderTemplate(data) {
     const { id, name, city, country, tagline, price, portrait } = data;
@@ -52,7 +52,6 @@ function photographerHeaderTemplate(data) {
         h2.setAttribute('aria-label', name);
         const h3 = document.getElementById("photographerHeaderh3");
         h3.textContent = `${city}, ${country}`;
-        h3.setAttribute('aria-label', `${city}, ${country}`);
         const taglineElement = document.getElementById("photographerHeaderTagline");
         taglineElement.textContent = tagline;
         const imgElement = document.querySelector(".photographerProfileImg");
@@ -184,12 +183,225 @@ function galleryTemplate(galleryItem, photographerName) {
 }
 
 
-
-/*setTimeout(()=>{
-     const comboText2 = document.querySelector('#combo1-0');
-//comboText2.addEventListener('click', test())
-function test() {
-    console.log('test');
+function galleryChecker(event) {
+    const clickedItem = event.currentTarget;
+    clickedItem.classList.add('currentItem');
+    const prevItem = clickedItem.previousElementSibling;
+    if (prevItem) {
+        prevItem.classList.add('prevItem');
+        chevronLeft.style.display = 'block';
+    } else {
+        const chevronLeft = document.querySelector('#chevron-left');
+        chevronLeft.style.display = 'none';
+    }
+    const nextItem = clickedItem.nextElementSibling;
+    if(nextItem) {
+    nextItem.classList.add('nextItem');
+    } else  {
+        const chevronRight = document.querySelector('#chevron-right');
+        chevronRight.style.display = 'none';
+    }
 }
-console.log(comboText2);
-}2000)=*/
+
+
+
+const chevronLeft = document.querySelector('#chevron-left');
+chevronLeft.addEventListener('click', handlePrevItemClick);
+
+const chevronRight = document.querySelector('#chevron-right');
+chevronRight.addEventListener('click', handleNextItemClick);
+
+
+function handlePrevItemClick(event) {
+    chevronRight.style.display = 'block';
+    chevronLeft.style.display = 'block';
+    const prevItem = document.querySelector(".prevItem");
+    const nextItem = document.querySelector(".nextItem");
+    let newCurrentItem;
+    if (prevItem) {
+        const prevImg = prevItem.querySelector('img');
+        const prevVideo = prevItem.querySelector('video');
+        const prevTitleElement = prevItem.querySelector('.gallery-item-title');
+        const imgModal = document.getElementById("modale-img");
+        const videoModal = document.getElementById("modale-video");
+        const titleModal = document.getElementById("gallery-item-title");
+        if (prevImg) {
+            imgModal.style.display = 'block';
+            videoModal.style.display = 'none';
+            const prevSrc = prevImg.getAttribute('src');
+            const prevTitle = prevTitleElement.textContent;
+            imgModal.src = prevSrc;
+            titleModal.textContent = prevTitle;
+        }
+        if (prevVideo) {
+            imgModal.style.display = 'none';
+            videoModal.style.display = 'block';
+            const prevSrc = prevVideo.getAttribute('src');
+            const prevTitle = prevTitleElement.textContent;
+            videoModal.src = prevSrc;
+            titleModal.textContent = prevTitle;
+        }
+        let currentItem = document.querySelector('.currentItem');
+        newCurrentItem = currentItem.previousElementSibling; 
+        currentItem.classList.remove('currentItem');
+        newCurrentItem.classList.add('currentItem');
+
+    if (nextItem) {
+      nextItem.classList.remove('nextItem');
+    }
+    if (prevItem) {
+        prevItem.classList.remove('prevItem');
+        
+    }
+    const newPrevItem = newCurrentItem.previousElementSibling;
+    const newNextItem = newCurrentItem.nextElementSibling;
+
+    if (newPrevItem) {
+        newPrevItem.classList.add('prevItem');
+        chevronLeft.style.display = 'block';
+    } else {
+        chevronLeft.style.display = 'none';
+    }
+    if (newNextItem) {
+        newNextItem.classList.add('nextItem');
+        chevronRight.style.display = 'block';
+    } else {
+        chevronRight.style.display = 'none';
+    }
+}
+}
+
+function handleNextItemClick(event) {
+    chevronRight.style.display = 'block';
+    chevronLeft.style.display = 'block';
+    const prevItem = document.querySelector(".prevItem");
+    const nextItem = document.querySelector(".nextItem");
+    
+    let newCurrentItem; 
+    if (nextItem) {
+        const nextImg = nextItem.querySelector('img');
+        const nextVideo = nextItem.querySelector('video');
+        const nextTitleElement = nextItem.querySelector('.gallery-item-title');
+        const imgModal = document.getElementById("modale-img");
+        const videoModal = document.getElementById("modale-video");
+        const titleModal = document.getElementById("gallery-item-title");
+        if (nextImg) {
+            imgModal.style.display = 'block';
+            videoModal.style.display = 'none';
+            const nextSrc = nextImg.getAttribute('src');
+            const nextTitle = nextTitleElement.textContent;
+            imgModal.src = nextSrc;
+            titleModal.textContent = nextTitle;
+        }
+        if (nextVideo) {
+            imgModal.style.display = 'none';
+            videoModal.style.display = 'block';
+            const nextSrc = nextVideo.getAttribute('src');
+            const nextTitle = nextTitleElement.textContent;
+            videoModal.src = nextSrc;
+            titleModal.textContent = nextTitle;
+        }
+        let currentItem = document.querySelector('.currentItem');
+        newCurrentItem = currentItem.nextElementSibling; 
+        currentItem.classList.remove('currentItem');
+        newCurrentItem.classList.add('currentItem');
+    }
+
+    if (nextItem) {
+        nextItem.classList.remove('nextItem');
+    }
+    if (prevItem) {
+        prevItem.classList.remove('prevItem');
+    }
+
+    const newPrevItem = newCurrentItem.previousElementSibling;
+    const newNextItem = newCurrentItem.nextElementSibling;
+    if (newPrevItem) {
+    newPrevItem.classList.add('prevItem');
+    chevronLeft.style.display = 'block';
+    } else {
+        chevronLeft.style.display = 'none';
+    }
+
+    if (newNextItem) {
+    newNextItem.classList.add('nextItem');
+    chevronRight.style.display = 'block';
+    } else {
+        chevronRight.style.display = 'none';
+    }
+}
+
+const close = document.querySelector('#close-modal-icon');
+close.addEventListener('click', removeClasses);
+function removeClasses(event) {
+    currentItem = document.querySelector('.currentItem');
+    prevItem = document.querySelector('.prevItem');
+    nextItem = document.querySelector('.nextItem');
+    if (currentItem) {
+    currentItem.classList.remove('currentItem');
+    }
+    if (prevItem)  {
+        prevItem.classList.remove('prevItem');
+    }
+    if (nextItem) {
+    nextItem.classList.remove('nextItem');
+    }
+}
+function openModalContact(event) {
+    event.preventDefault();
+    const modalContact = document.getElementById('container-contact-modal');
+        modalContact.style.display = 'block';
+}
+
+const openModalBtn = document.getElementById('contact-btn');
+openModalBtn.addEventListener('click', openModalContact)
+
+
+
+const closeContactModalBtn = document.getElementById('close-modal-icon');
+closeContactModalBtn.addEventListener("click", closeModalContact);
+
+function closeModalContact() {
+    const modal = document.getElementById('container-contact-modal');
+    modal.style.display = 'none';
+}
+
+const submitModal = document.querySelector('.submit_button');
+submitModal.addEventListener("click", submitModalForm);
+
+function submitModalForm(event) {
+    event.preventDefault();
+    const firstname = document.querySelector('#first');
+    const lastname = document.querySelector('#last');
+    const email = document.querySelector('#email');
+    const message = document.querySelector('#message');
+    
+    console.log(firstname.value);
+    console.log(lastname.value);
+    console.log(email.value);
+    console.log(message.value);
+}
+
+document.addEventListener('keydown', handleKeyPress);
+
+function handleKeyPress(event) {
+    const modal = document.getElementById('gallery-item-modal');
+    const currentItem = document.querySelector('.currentItem');
+
+    if (modal.style.display === 'block' && currentItem) {
+        switch (event.key) {
+            case 'ArrowLeft':
+                handlePrevItemClick(event);
+                break;
+            case 'ArrowRight':
+                handleNextItemClick(event);
+                break;
+            case 'Escape':
+                closeModalGallery();
+                break;
+            default:
+                break;
+        }
+    }
+}
+
