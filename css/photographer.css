@@ -36,14 +36,14 @@
 #contact-modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 20%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 2%;
 }
 
 .modal header {
@@ -70,7 +70,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 26px;
 }
 
 form div {
@@ -83,10 +83,13 @@ form div {
 
 form input, form textarea {
     width: 100%;
-    height: 68px;
+    height: 38px;
     border: none;
     border-radius: 5px;
     margin :0;
+}
+form textarea {
+    height : 66px;
 }
 
 .formData {
@@ -104,7 +107,8 @@ form input, form textarea {
     font-size:40px;
     position: relative;
     top: -15px;
-    left: 150px;
+    left: 50%;
+    color: #fff;
 }
 
 .photographer_gallery {
@@ -143,6 +147,7 @@ form input, form textarea {
 .photographer_gallery article {
     width: 50%; 
 }
+
 #header-photographer {
     margin-right:0;
     margin-left:0;
@@ -158,7 +163,7 @@ form input, form textarea {
 }
 
 .gallery-item-info i {
-    margin-left : 3px;
+    margin-left : 5px;
 }
 
 .gallery-item-title, .gallery-item p {
@@ -180,7 +185,7 @@ form input, form textarea {
 
 #nbLikes {
     display:flex;
-    align-items: center;
+    align-items: baseline;
 }
 
 #gallery-item-modal {
@@ -251,13 +256,14 @@ form input, form textarea {
     width: 380px;
     color: black;
     padding: 0px 30px;
-    border-radius: 5px;
+    border-top-left-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 #fixed-label {
     display: flex;
     justify-content: space-between;
+    height: 70px;
 }
 
 #fixed-label i {
@@ -271,6 +277,7 @@ form input, form textarea {
 
 #galleryselect {
     display: flex;
+    align-items: baseline;
 }
 
 #tri-section { 
@@ -395,13 +402,23 @@ form input, form textarea {
     }
     
     .highlighted {
-        background-color: #4c0303; /* Couleur de surbrillance */
-        color: #fff; /* Couleur du texte en surbrillance */
-        /* Autres styles de surbrillance selon vos préférences */
+        background-color: #4c0303;
+        color: #fff; 
       }
 
       #tri-label {
-        width: 100px; /* Ajustez la largeur selon vos besoins */
-        font-size: 16px; /* Ajustez la taille du texte selon vos besoins */
+        width: 100px; 
+        font-size: 16px; 
+      }
+
+      #photographer-contact {
+        font-size: 35px;
+        margin: 0;
+        font-weight: 500;
+      }
+
+      #header-contact {
+        display: flex;
+        align-items: center;
       }
       

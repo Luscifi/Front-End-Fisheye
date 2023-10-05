@@ -1,5 +1,4 @@
 async function getPhotographers() {
-    // Load data from JSON using Fetch
     const response = await fetch('./data/photographers.json');
     const data = await response.json();
 
@@ -25,39 +24,6 @@ async function displayPhotographerInfo(photographer) {
 }
 
 
-async function displayMedia(photographerId, media, photographer) {
-  let mediasTries;
-      const tri = document.querySelector("#tribtn");
-      const filteredMedia = media.filter(mediaItem => mediaItem.photographerId === photographerId);
-      tri.addEventListener("change", function () {
-          mediasTries = "";
-          const container = document.querySelector('.photographer_gallery');
-          container.innerHTML = "";
-          switch (tri.value) {
-      
-              case 'popularity':
-                  mediasTries = media.sort((a, b) => b.likes - a.likes);
-                  displayPhotographersGallery(mediasTries);
-                  break;
-      
-              case 'date':
-                  mediasTries = media.sort((a, b) => new Date(b.date) - new Date(a.date));
-                  displayPhotographersGallery(mediasTries);
-                  break;
-      
-              case 'title':
-                  mediasTries = media.sort((a, b) => a.title.localeCompare(b.title));
-                  displayPhotographersGallery(mediasTries);
-                  break;
-      
-              default:
-                  displayPhotographersGallery(media);
-                  break;
-          }
-      
-      });
-    }
-
 async function displayPhotographerGallery(photographerId, media, photographer) {
     const photographerGallery = document.querySelector('.photographer_gallery');
     const filteredMedia = media.filter(mediaItem => mediaItem.photographerId === photographerId);
@@ -68,33 +34,30 @@ async function displayPhotographerGallery(photographerId, media, photographer) {
           switch (tri.value) {
       
             case 'popularity':
-                mediasTries = media.sort((a, b) => b.likes - a.likes);
-                displayPhotographersGallery(mediasTries);
+                mediasTries = filteredMedia.sort((a, b) => b.likes - a.likes);
+
                 break;
     
             case 'date':
-                mediasTries = media.sort((a, b) => new Date(b.date) - new Date(a.date));
-                displayPhotographersGallery(mediasTries);
+                mediasTries = filteredMedia.sort((a, b) => new Date(b.date) - new Date(a.date));
                 break;
     
             case 'title':
-                mediasTries = media.sort((a, b) => a.title.localeCompare(b.title));
-                displayPhotographersGallery(mediasTries);
+                mediasTries = filteredMedia.sort((a, b) => a.title.localeCompare(b.title));
                 break;
     
             default:
-                displayPhotographersGallery(media);
+               mediasTries = filteredMedia;
                 break;
         }
     
 
-    filteredMedia.forEach((mediaItem) => {
+    mediasTries.forEach((mediaItem) => {
         const galleryModel = galleryTemplate(mediaItem, photographer.name);
         const galleryDOM = galleryModel.getGalleryDOM();
             photographerGallery.appendChild(galleryDOM);
     });
 }
-
 
 
 async function init() {
@@ -106,6 +69,10 @@ async function init() {
         if (photographer) {
             displayPhotographerInfo(photographer);
             displayPhotographerGallery(photographerId, media, photographer);
+            const tribtn = document.getElementById("tribtn");
+            tribtn.addEventListener("change", () => {
+                displayPhotographerGallery(photographerId, media, photographer);
+            } )
         } else {
             console.log('Photographer not found.');
         }
