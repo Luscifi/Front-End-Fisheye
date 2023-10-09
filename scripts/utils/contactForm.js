@@ -1,3 +1,6 @@
+const openModalBtn = document.getElementById('contact-btn');
+openModalBtn.addEventListener('click', openModalContact)
+
 function openModalContact(event) {
     event.preventDefault();
     const modalContact = document.getElementById('container-contact-modal');
@@ -6,7 +9,12 @@ function openModalContact(event) {
     const namePhotographerContact = document.getElementById('photographer-name');
     namePhotographerContact.innerText = namePhotographer.innerText;
 }
-function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
+
+const closeContactModalBtn = document.getElementById('close-modal-icon-contact');
+closeContactModalBtn.addEventListener("click", closeModalContact);
+
+function closeModalContact() {
+    const modal = document.getElementById('container-contact-modal');
+    modal.style.display = 'none';
 }
+

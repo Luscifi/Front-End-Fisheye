@@ -31,3 +31,39 @@ async function init() {
 }
 
 init();
+
+function photographerTemplate(data) {
+    const {id, name, city, country, tagline, price, portrait } = data;
+
+    const picture = `./assets/images/IDphotos/${portrait}`;
+
+    function getUserCardDOM() {
+        const article = document.createElement('article');
+        const imgLink = document.createElement('a');
+        imgLink.href = `photographer.html?id=${id}`;
+        imgLink.innerHTML = `<img src="${picture}" alt="${name}" class="profile-picture" />`;
+        const h2 = document.createElement('h2');
+        h2.textContent = name;
+        h2.setAttribute('aria-label', name);
+        const h3 = document.createElement('h3');
+        h3.textContent = city + ', ' + country;
+        h3.setAttribute('aria-label', city + ', ' + country);
+        const taglineElement = document.createElement('p');
+        taglineElement.setAttribute('id', 'tagline');
+        taglineElement.textContent = tagline;
+
+        const priceElement = document.createElement('p');
+        priceElement.setAttribute('id', 'price');
+        priceElement.textContent = price + ' €/jour';
+
+
+        article.appendChild(imgLink);
+        article.appendChild(h2);
+        article.appendChild(h3);
+        article.appendChild(taglineElement);
+        article.appendChild(priceElement);
+
+        return article;
+    }
+    return { id, name, city, country, tagline, price, picture, getUserCardDOM }
+}
