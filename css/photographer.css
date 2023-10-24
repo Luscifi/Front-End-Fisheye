@@ -154,15 +154,23 @@ form textarea {
 }
 }
 
-@media (max-width: 750px) {
+@media screen and (max-width: 1200px) {
 #modale-img {
-    width:70%;
+    width:80%;
 }
 #modale-video {
-    width:90%;
+    width:80%;
 }
 }
 
+@media screen and (max-width: 900px) {
+    #modale-img {
+        width:70%;
+    }
+    #modale-video {
+        width:70%;
+    }
+}
 .gallery-item-info {
     color: #901C1C;
     display: flex;
@@ -222,7 +230,6 @@ form textarea {
 
   #gallery-item-modal i {
     font-size: 60px;
-    margin-left: 3Opx;
     padding-right:30px;
     padding-left:30px;
     color: #901C1C;
@@ -241,6 +248,7 @@ form textarea {
 
 #gallery-item-modal-content img, #gallery-item-modal-content video {
     height:500px;
+    object-fit: cover;
 }
 
 #gallery-item-title {
