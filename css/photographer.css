@@ -153,6 +153,16 @@ form textarea {
     margin-left:0;
 }
 }
+
+@media (max-width: 750px) {
+#modale-img {
+    width:70%;
+}
+#modale-video {
+    width:90%;
+}
+}
+
 .gallery-item-info {
     color: #901C1C;
     display: flex;

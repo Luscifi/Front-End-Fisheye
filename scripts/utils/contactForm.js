@@ -18,3 +18,19 @@ function closeModalContact() {
     modal.style.display = 'none';
 }
 
+const submitModal = document.querySelector('.submit_button');
+submitModal.addEventListener("click", submitModalForm);
+
+function submitModalForm(event) {
+    event.preventDefault();
+    const firstname = document.querySelector('#first');
+    const lastname = document.querySelector('#last');
+    const email = document.querySelector('#email');
+    const message = document.querySelector('#message');
+
+    console.log(firstname.value);
+    console.log(lastname.value);
+    console.log(email.value);
+    console.log(message.value);
+}
+

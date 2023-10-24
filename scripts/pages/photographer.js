@@ -61,24 +61,18 @@ async function displayPhotographerGallery(photographerId, media, photographer) {
 
 
 async function init() {
-    try {
+
         const { photographers, media } = await getPhotographers();
         const url = new URL(window.location.href);
         const photographerId = parseInt(url.searchParams.get('id'));
         const photographer = photographers.find(photographer => photographer.id === photographerId)
-        if (photographer) {
             displayPhotographerInfo(photographer);
             displayPhotographerGallery(photographerId, media, photographer);
             const tribtn = document.getElementById("tribtn");
             tribtn.addEventListener("change", () => {
                 displayPhotographerGallery(photographerId, media, photographer);
             } )
-        } else {
-            console.log('Photographer not found.');
-        }
-    } catch (error) {
-        console.error('An error occurred:', error);
-    }
+
 }
 
 init();

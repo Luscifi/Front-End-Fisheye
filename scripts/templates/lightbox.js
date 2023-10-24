@@ -12,7 +12,6 @@ function galleryTemplate(galleryItem, photographerName) {
     function getGalleryDOM() {
         const article = document.createElement('article');
         article.classList.add('gallery-item');
-        console.log(article);
         article.addEventListener('click', galleryChecker);
     
         const galleryLink = document.createElement('a');
@@ -108,7 +107,6 @@ function galleryTemplate(galleryItem, photographerName) {
 
     const article = document.createElement('article');
     article.classList.add('gallery-item');
-    console.log(article);
     article.addEventListener('click', galleryChecker);
 
      
