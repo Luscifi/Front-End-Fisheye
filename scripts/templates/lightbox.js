@@ -1,3 +1,4 @@
+//lightbox
 let totalLike = 0;
 let likesArray = [];
 
@@ -80,6 +81,7 @@ function galleryTemplate(galleryItem, photographerName) {
 
 		return article;
 
+//Ouverture de la lightbox
 		function openModalGallery(event) {
 			event.preventDefault();
 			const modal = document.getElementById("gallery-item-modal");
@@ -111,7 +113,7 @@ function galleryTemplate(galleryItem, photographerName) {
 	return { id, title, image, likes, price, getGalleryDOM };
 }
 
-
+//Vérifications et changements pour chevrons si mouvement dans lightbox
 function galleryChecker(event) {
 	const clickedItem = event.currentTarget;
 	clickedItem.classList.add("currentItem");
@@ -132,8 +134,7 @@ function galleryChecker(event) {
 	}
 }
 
-
-
+//Clic des chevrons 
 const chevronLeft = document.querySelector("#chevron-left");
 chevronLeft.addEventListener("click", handlePrevItemClick);
 
@@ -277,7 +278,50 @@ function removeClasses(event) {
 	}
 }
 
-function closeModalGallery() {
-	const modal = document.getElementById("gallery-item-modal");
-	modal.style.display = "none";
+
+const closeContactModalBtn = document.getElementById('close-modal-icon');
+closeContactModalBtn.addEventListener("click", closeModalContact);
+
+function closeModalContact() {
+    const modal = document.getElementById('container-contact-modal');
+    modal.style.display = 'none';
+}
+
+const submitModal = document.querySelector('.submit_button');
+submitModal.addEventListener("click", submitModalForm);
+
+function submitModalForm(event) {
+    event.preventDefault();
+    const firstname = document.querySelector('#first');
+    const lastname = document.querySelector('#last');
+    const email = document.querySelector('#email');
+    const message = document.querySelector('#message');
+
+    console.log(firstname.value);
+    console.log(lastname.value);
+    console.log(email.value);
+    console.log(message.value);
+}
+
+document.addEventListener('keydown', handleKeyPress);
+
+function handleKeyPress(event) {
+    const modal = document.getElementById('gallery-item-modal');
+    const currentItem = document.querySelector('.currentItem');
+
+    if (modal.style.display === 'block' && currentItem) {
+        switch (event.key) {
+            case 'ArrowLeft':
+                handlePrevItemClick(event);
+                break;
+            case 'ArrowRight':
+                handleNextItemClick(event);
+                break;
+            case 'Escape':
+                closeModalGallery();
+                break;
+            default:
+                break;
+        }
+    }
 }

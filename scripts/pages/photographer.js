@@ -11,7 +11,6 @@ async function getPhotographers() {
 	};
 }
 
-
 async function displayPhotographerInfo(photographer) {
 	const photographerHeader = document.querySelector(".photographer-head");
 
@@ -59,9 +58,7 @@ async function displayPhotographerGallery(photographerId, media, photographer) {
 	});
 }
 
-
 async function init() {
-
 	const { photographers, media } = await getPhotographers();
 	const url = new URL(window.location.href);
 	const photographerId = parseInt(url.searchParams.get("id"));
@@ -74,5 +71,4 @@ async function init() {
 	} );
 
 }
-
 init();
