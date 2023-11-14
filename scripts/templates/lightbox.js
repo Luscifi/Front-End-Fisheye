@@ -1,4 +1,4 @@
-//lightbox
+
 let totalLike = 0;
 let likesArray = [];
 
@@ -24,8 +24,7 @@ function galleryTemplate(galleryItem, photographerName) {
 			videoElement.src = videoPhotographer;
 			videoElement.controls = true;
 			videoElement.setAttribute("aria-type", "video");
-			galleryLink.appendChild(videoElement);
-		}
+			galleryLink.appendChild(videoElement)
 		galleryLink.addEventListener("click", openModalGallery);
 		const galleryItemInfoDiv = document.createElement("div");
 		galleryItemInfoDiv.classList.add("gallery-item-info");
@@ -41,6 +40,8 @@ function galleryTemplate(galleryItem, photographerName) {
 		nbLikes.setAttribute("id", "nbLikes");
 		const heartIconElement = document.createElement("i");
 		heartIconElement.classList.add("fa-regular", "fa-heart", "notLiked");
+		heartIconElement.setAttribute("alt", "like");
+		heartIconElement.setAttribute("aria-type", "cliquez pour liker");
 		heartIconElement.setAttribute("id", "likeHeart");
 		const likesTotal = document.querySelector("#likes-total");
 		heartIconElement.addEventListener("click", function (event) {
@@ -279,29 +280,12 @@ function removeClasses(event) {
 }
 
 
-const closeContactModalBtn = document.getElementById('close-modal-icon');
-closeContactModalBtn.addEventListener("click", closeModalContact);
-
 function closeModalContact() {
     const modal = document.getElementById('container-contact-modal');
     modal.style.display = 'none';
 }
 
-const submitModal = document.querySelector('.submit_button');
-submitModal.addEventListener("click", submitModalForm);
 
-function submitModalForm(event) {
-    event.preventDefault();
-    const firstname = document.querySelector('#first');
-    const lastname = document.querySelector('#last');
-    const email = document.querySelector('#email');
-    const message = document.querySelector('#message');
-
-    console.log(firstname.value);
-    console.log(lastname.value);
-    console.log(email.value);
-    console.log(message.value);
-}
 
 document.addEventListener('keydown', handleKeyPress);
 
