@@ -1,9 +1,6 @@
+
 const closeModalIcon = document.getElementById("close-modal-icon");
 closeModalIcon.addEventListener("click", closeModalGallery);
-function closeModalGallery() {
-	const modal = document.getElementById("gallery-item-modal");
-	modal.style.display = "none";
-}
 
 function photographerHeaderTemplate(data) {
 	const { id, name, city, country, tagline, price, portrait } = data;

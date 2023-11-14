@@ -1,4 +1,3 @@
-//lightbox
 let totalLike = 0;
 let likesArray = [];
 
@@ -81,7 +80,6 @@ function galleryTemplate(galleryItem, photographerName) {
 
 		return article;
 
-//Ouverture de la lightbox
 		function openModalGallery(event) {
 			event.preventDefault();
 			const modal = document.getElementById("gallery-item-modal");
@@ -113,7 +111,7 @@ function galleryTemplate(galleryItem, photographerName) {
 	return { id, title, image, likes, price, getGalleryDOM };
 }
 
-//Vérifications et changements pour chevrons si mouvement dans lightbox
+
 function galleryChecker(event) {
 	const clickedItem = event.currentTarget;
 	clickedItem.classList.add("currentItem");
@@ -134,7 +132,8 @@ function galleryChecker(event) {
 	}
 }
 
-//Clic des chevrons 
+
+
 const chevronLeft = document.querySelector("#chevron-left");
 chevronLeft.addEventListener("click", handlePrevItemClick);
 
@@ -278,6 +277,7 @@ function removeClasses(event) {
 	}
 }
 
+<<<<<<< HEAD
 
 
 
@@ -316,3 +316,9 @@ function handleKeyPress(event) {
         }
     }
 }
+=======
+function closeModalGallery() {
+	const modal = document.getElementById("gallery-item-modal");
+	modal.style.display = "none";
+}
+>>>>>>> parent of 2740de9 (Amelioration accessibiilitékeykpress)
